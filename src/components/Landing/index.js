@@ -44,10 +44,12 @@ class Landing extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState){
+
     console.log("FILE: ", this.state.file.size)
     console.log("DATA: ", this.state.data.length)
     console.log("PREVDATA: ", prevState.data.length)
     console.log("DATA: ", this.state.data)
+
     if(prevState.data.length == 0 && this.state.data.length > 0){
         console.log("DATA: ", this.state.data.length)
       let allMaterias = [];
@@ -66,6 +68,7 @@ class Landing extends React.Component {
           // if (allMaterias.includes(value) === false) allMaterias.push(value);
         })
       }
+      this.setState({allMaterias})
       console.log("allMaterias:", allMaterias)
     }
     
@@ -124,18 +127,19 @@ class Landing extends React.Component {
           <button>Horarios prestablecidos</button>
           
         <div>
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" id="check-1"/>
-          <label className="form-check-label" for="check-1">Mate I</label>
-          </div>
-          <div className="form-check">
-          <input className="form-check-input" type="checkbox" id="check-2"/>
-          <label className="form-check-label" for="check-2">Fisica II</label>
-          </div>
-          <div className="form-check">
-          <input className="form-check-input" type="checkbox" id="check-3"/>
-          <label className="form-check-label" for="check-3">Discretas</label>
-          </div>
+        
+        
+          {
+            this.state.allMaterias && this.state.allMaterias.map((item, i)=>{
+              return(
+                <div className="form-check">
+                  <input className="form-check-input" type="checkbox" id="check-1"/>
+                  <label className="form-check-label" for="check-1">{item}</label>
+                </div>
+              )
+            })
+          }
+          
         </div>
 
           <Link to={ROUTES.HOME}>
