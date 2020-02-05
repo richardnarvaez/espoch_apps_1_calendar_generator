@@ -250,17 +250,15 @@ class Landing extends React.Component {
   }
   render(){
     return(
-      <div style={{ 
-        display: 'flex',
-        alignItems: 'center',
-        height: '100vh'}}>
+      <>
 
-      <div className="container">
+      
       
       {
         this.state.generar ? 
         <>
 
+        <div className="container" style={{paddingTop: 150}}>
         <a className="no-print" style={{position: 'absolute',
           background: "#fff",
           padding: 8,
@@ -270,8 +268,8 @@ class Landing extends React.Component {
           alignItems: "center",
           cursor: "pointer",
           justifyContent: "center",
-          height: 42,
-          width: 42,
+          height: 38,
+          width: 58,
           boxShadow: "0 2px 5px #00000045",
           }} onClick={this.toggleClick}>
             <Icon name="back"/>
@@ -287,7 +285,6 @@ class Landing extends React.Component {
           <label className="btn btn-primary">
             <i className="fa fa-image"></i> Importar<input type="file" style={{display: 'none'}} accept={SheetJSFT} onChange={this.handleChange}/>
           </label>
-          <button>Horarios prestablecidos</button>
           
         </div>
         <div>
@@ -353,13 +350,12 @@ class Landing extends React.Component {
             <button className="bt btn-primary" onClick={this.generar}>Generar</button>
             <button onClick={()=>window.print()}>Imprimir</button>
           </div>
-
+</div>
         </>
     : <Start ctx={this}/>
       }
       
-      </div>
-    </div>
+      </>
     )
   }
 }
@@ -369,7 +365,8 @@ const Start = ({ctx}) => {
 
     <AuthUserContext.Consumer>
       {authUser => (
-        <div className="row" style={{textAlign: 'center',}}> 
+        <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center'}}>
+        <div className="row" style={{textAlign: 'center'}}> 
           <div className="col-6">
             <a onClick={ ctx.toggleClick }  className="card" style={{width: '18rem', marginLeft: 'auto', cursor: 'pointer'}}>
               <img style={{height: 200, objectFit: 'cover'}} className="card-img-top" src="https://www.milenio.com/uploads/media/2019/04/02/el-domingo-de-abril-sera.jpg" alt="Card image cap"/>
@@ -380,11 +377,36 @@ const Start = ({ctx}) => {
             </a>
           </div>
 
-          <div className="col-6">
+          <div className="col-6" style={{display: "flex",
+            alignItems: "center"}}>
             {
               authUser != null ? <Link to={ROUTES.HOME}>
               <div className="card" style={{width: '18rem'}} >
-              <img style={{height: 200, objectFit: 'cover'}}  className="card-img-top" src="https://guiauniversitaria.mx/wp-content/uploads/2019/05/dia-del-estudiante-1068x623.jpg" alt="Card image cap"/>
+              <Link to={ROUTES.SIGN_OUT} className="no-print" data-toggle="tooltip" data-placement="top" title="Tooltip on top" style={{position: 'absolute',
+          background: "#fff",
+          padding: 8,
+          top: 8,
+          right: 8,
+          borderRadius: 10000,
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          cursor: "pointer",
+          justifyContent: "center",
+          height: 38,
+          width: 38,
+          boxShadow: "0 2px 5px #00000045",
+          }} >
+            <Icon name="close"/>
+          </Link>
+              <img style={{
+                height: 100,
+                margin: "auto",
+                width: 100,
+                marginTop: "1.25rem",
+                borderRadius: 16,
+                objectFit: "cover"
+              }}  src="https://guiauniversitaria.mx/wp-content/uploads/2019/05/dia-del-estudiante-1068x623.jpg" alt="Card image cap"/>
               <div className="card-body">
                 <h5 className="card-title">Bienvenido: {authUser.username} </h5>
                 <span>Entrar a mi cuenta</span>
@@ -402,8 +424,8 @@ const Start = ({ctx}) => {
             }
             
           </div>
-          <div className="col-12 mt-4">No pasar por aqui si ya tengo un asesion iniciada.</div>
-        </div>
+          <p className="col-12" style={{fontSize: 12, marginTop: 64}}>2020 | Nombre App</p>
+        </div></div>
       )}
     </AuthUserContext.Consumer>
       

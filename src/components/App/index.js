@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
+import SignOutPage from '../SignOut';
 import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
 import AccountPage from '../Account';
@@ -28,13 +29,14 @@ const App = () => (
           <div>
           <Switch>
             {/* rutas */}
-            <Route exact path={ROUTES.STADISTIC} component={StadisticsPage} />
+            {/* <Route exact path={ROUTES.STADISTIC} component={StadisticsPage} />
             <Route exact path={ROUTES.FLOTA} component={FlotaPage} />
             <Route exact path={ROUTES.NOTIFY} component={NotifyPage} />
             <Route exact path={ROUTES.WORKERS} component={WorkersPage} />
-            <Route exact path={ROUTES.CAJA} component={CajaPage} />
+            <Route exact path={ROUTES.CAJA} component={CajaPage} /> */}
 
             <Route exact path={ROUTES.LANDING} component={LandingPage} />
+            <Route path={ROUTES.SIGN_OUT} component={SignOutPage} />
             {/* <Route path={ROUTES.SIGN_UP} component={SignUpPage} /> */}
             {/* <Route path={ROUTES.SIGN_IN} component={SignInPage} /> */}
             <Route
