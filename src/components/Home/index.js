@@ -82,10 +82,20 @@ class HomePage extends React.Component {
 
     return (
     <div>
-        <h1>Home Page</h1>
-        <p>The Home Page is accessible by every signed in user.</p>
+        <div class="dropdown">
+          <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img style={{width: 32, height: 32}} src="https://images.vexels.com/media/users/3/147101/isolated/preview/b4a49d4b864c74bb73de63f080ad7930-instagram-profile-button-by-vexels.png"/>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Informacion</a>
+            <a class="dropdown-item" href="#">Cerrar Sesion</a>
+          </div>
+        </div>
 
-        <Messages />
+        <h1>Lista</h1>
+        <p>Anota tus tareas y cumplelas de forma ordenada</p>
+
+        {/* <Messages /> */}
 
         <div className="App container">
         

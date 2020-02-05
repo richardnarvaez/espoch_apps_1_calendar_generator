@@ -53,13 +53,50 @@ class Landing extends React.Component {
     if(prevState.data.length == 0 && this.state.data.length > 0){
         console.log("DATA: ", this.state.data.length)
       let allMaterias = [];
+      let allMatRows = [];
       for(let i = 7; i<= this.state.data.length - 1; i ++){
         console.log("I: ", i)
         console.log("DATOS FIJOS: ", this.state.data[i])
 
+        // for(let m = 0 ; m<= Object.keys(this.state.data[i]).length -1; m++){
+        //   console.log(`${i}: ${Object.keys(this.state.data[i])[i]}`);
+          
+        // }
+        let rowMats = [null, null, null, null, null, null, null, null]
         Object.keys(this.state.data[i]).forEach(key => {
+
           let value = this.state.data[i][key];
-          console.log(`${key.replace("__EMPTY_", "")}: ${value}`);
+          switch(key){
+            case "__EMPTY_1":
+              rowMats[0] = value
+            break;
+            case "__EMPTY_4":
+              rowMats[1] = value
+            break;
+            case "__EMPTY_8":
+              rowMats[2] = value
+            break;
+            case "__EMPTY_9":
+              rowMats[3] = value
+            break;
+            case "__EMPTY_11":
+              rowMats[4] = value
+            break;
+            case "__EMPTY_12":
+              rowMats[5] = value
+            break;
+            case "__EMPTY_13":
+              rowMats[6] = value
+            break;
+            case "__EMPTY_14":
+              rowMats[7] = value
+            break;
+
+          }
+          console.log("ROW: ", rowMats)
+          
+          //console.log(">>>>>>>>>>>", value.split(/\n\n/g) )
+          console.log(`${key.replace("__EMPTY_", "")}: ${value.replace(/\n\n/g, " | ")}`);
           if (allMaterias.indexOf(value) === -1) {
             if (!value.match(/^\d/)) {
               allMaterias.push(value);
@@ -67,9 +104,9 @@ class Landing extends React.Component {
           }
           // if (allMaterias.includes(value) === false) allMaterias.push(value);
         })
+        allMatRows.push(rowMats);
       }
-      this.setState({allMaterias})
-      console.log("allMaterias:", allMaterias)
+      this.setState({allMaterias, allMatRows})
     }
     
     if(this.state.file.size != undefined && this.state.data.length == 0){
@@ -141,12 +178,50 @@ class Landing extends React.Component {
           }
           
         </div>
+        <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Hora</th>
+            <th scope="col">Lune</th>
+            <th scope="col">M</th>
+            <th scope="col">Mi</th>
+            <th scope="col">J</th>
+            <th scope="col">V</th>
+            <th scope="col">S</th>
+            <th scope="col">Domingo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            this.state.allMatRows && this.state.allMatRows.map((item, i)=>{
+              return(<>
+                <tr>
+                  {
+                    item.map((subItem, i)=>{
+                      if(subItem){
+                        let sp = subItem && subItem.split(/\n\n/g);
+                        return(<th scope="col">
+                        <p style={{fontWeight: 'lighter'}}>{sp[0]}</p>
+                        <p style={{fontWeight: 'bold'}}>{sp[1]}</p>
+                      </th>)
+                      }else{
+                        return(<th>
+                        <p>Hora libre</p>
+                        <p>---</p>
+                      </th>)
+                      }
+                    })
+                  }
+                </tr>
+              </>)
+              
+            })
+          }
+          </tbody>
+        </table>
 
-          <Link to={ROUTES.HOME}>
-            <div>
-              <span>Generar</span>
-            </div>
-          </Link>
+          <Link className="bt btn-primary" to={ROUTES.HOME}>Generar</Link>
+
         </>
     : <Start ctx={this}/>
       }
