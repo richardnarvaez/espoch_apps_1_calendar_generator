@@ -172,9 +172,12 @@ const Start = ({ctx}) => {
           <div className="col-6">
             {
               authUser != null ? <Link to={ROUTES.HOME}>
-              <div className="card">
-                <span>Nombre: {authUser.username} </span>
+              <div className="card" style={{width: '18rem'}} >
+              <img style={{height: 200, objectFit: 'cover'}}  className="card-img-top" src="https://guiauniversitaria.mx/wp-content/uploads/2019/05/dia-del-estudiante-1068x623.jpg" alt="Card image cap"/>
+              <div className="card-body">
+                <h5 className="card-title">Bienvenido: {authUser.username} </h5>
                 <span>Entrar a mi cuenta</span>
+                </div>
               </div>
             </Link> :
             <Link className="card" style={{width: '18rem'}} to={ROUTES.SIGN_IN}>

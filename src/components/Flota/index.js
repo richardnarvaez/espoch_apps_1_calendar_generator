@@ -16,16 +16,12 @@ class Flota extends React.Component{
           showdata: false,
           showadd: false,
           showsearch: true,
-
           data: [],
           dataflota:[],
           loading: false,
           id: null,
-
           notExist: false,
-
           disarmClic: false,
-
           scrh: "Todos",
       }            
   }

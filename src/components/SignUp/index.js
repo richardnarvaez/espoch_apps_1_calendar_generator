@@ -45,17 +45,20 @@ class SignUpFormBase extends Component {
 
     if (isAdmin) {
       roles[ROLES.ADMIN] = ROLES.ADMIN;
+    }else{
+      roles[ROLES.USER] = ROLES.USER;
     }
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in your Firebase realtime database
-        return this.props.firebase.admin(authUser.user.uid).set({
+        return this.props.firebase.user(authUser.user.uid).set({
           username,
           email,
           roles,
         });
+
       })
       .then(() => {
         return this.props.firebase.doSendEmailVerification();

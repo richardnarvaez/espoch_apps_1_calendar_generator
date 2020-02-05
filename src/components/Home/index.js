@@ -11,21 +11,26 @@ class HomePage extends React.Component {
     super();
     this.state = {counter: 10, todos: [], inputValue: ''};
 
-    this.addCounter = this.addCounter.bind(this);
+    // this.addCounter = this.addCounter.bind(this);
     this.subtractCounter = this.subtractCounter.bind(this);
 
     
   }
 
   componentDidMount() {
-    this.rootRef =  this.props.firebase.db.ref();//firebase.database().ref();
-    // this.counterRef = this.rootRef.child('counter');
-    this.todosRef = this.rootRef.child('todos')
-
-    this.rootRef.on('value', snap => {
-      this.setState({counter: snap.child('counter').val()});
-      this.setState({todos: snap.child('todos').val() || []});
-    });
+    this.props.firebase.auth.onAuthStateChanged(authUser => {
+      this.rootRef =  this.props.firebase.db.ref();//firebase.database().ref();
+      // this.counterRef = this.rootRef.child('counter');
+      console.log("FIREBASE: ", authUser )
+      const id = authUser.uid
+      this.todosRef = this.rootRef.child('users/'+ id + '/todos')
+      this.todosUserRef = this.rootRef.child('users/'+ id)
+      this.rootRef.on('value', snap => {
+        this.setState({counter: snap.child('counter').val()});
+        this.setState({todos: snap.child('users/'+ id + '/todos').val() || []});
+      });
+    })
+    
   }
 
   // addCounter() {
@@ -39,7 +44,7 @@ class HomePage extends React.Component {
   addTodo(val) {
     const todo = {text: val, checked: false}
     this.state.todos.push(todo);
-    this.rootRef.set({todos: this.state.todos, counter: this.state.counter});
+    this.todosUserRef.update({todos: this.state.todos, counter: this.state.counter});
     this.setState({inputValue: ''});
   }
 
@@ -53,8 +58,8 @@ class HomePage extends React.Component {
   removeTodo(i) {
     const remainder = this.state.todos.filter((todo) => {
       if(i !== this.state.todos.indexOf(todo)) return todo;
-    });
-    this.rootRef.set({todos: remainder, counter: this.state.counter});
+    })
+    this.todosUserRef.update({todos: remainder, counter: this.state.counter});
   }
 
   updateInputValue(evt) {

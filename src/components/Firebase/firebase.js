@@ -63,8 +63,6 @@ class Firebase {
 
   doSignOut = () => {
     this.auth.signOut()
-    
-    
   }
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
@@ -85,26 +83,27 @@ class Firebase {
         this.user(authUser.uid)
           .once('value')
           .then(snapshot => {
-            if(snapshot.exists){
+            console.log("SNAP:", snapshot.exists())
+            if(snapshot.exists()){
 
+              const dbUser = snapshot.val();
+
+              // default empty roles
+              if (!dbUser.roles) {
+                dbUser.roles = {};
+              }
+
+              // merge auth and db user
+              authUser = {
+                uid: authUser.uid,
+                email: authUser.email,
+                emailVerified: authUser.emailVerified,
+                providerData: authUser.providerData,
+                ...dbUser,
+              };
+            }else{
+              this.doSignOut();
             }
-            
-            const dbUser = snapshot.val();
-
-            // default empty roles
-            if (!dbUser.roles) {
-              dbUser.roles = {};
-            }
-            
-            // merge auth and db user
-            authUser = {
-              uid: authUser.uid,
-              email: authUser.email,
-              emailVerified: authUser.emailVerified,
-              providerData: authUser.providerData,
-              ...dbUser,
-            };
-
             next(authUser);
           });
       } else {
@@ -113,8 +112,8 @@ class Firebase {
     });
 
   // *** User API ***
-  user = uid => this.db.ref(`admins/${uid}`);
-  users = () => this.db.ref('admins');
+  user = uid => this.db.ref(`users/${uid}`);
+  users = () => this.db.ref('users');
 
   admin = uid => this.db.ref(`admins/${uid}`);
   admins = () => this.db.ref('admins');
