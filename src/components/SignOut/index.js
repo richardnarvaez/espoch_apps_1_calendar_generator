@@ -14,8 +14,8 @@ const SignOutButton = ({ firebase, history }) => (
   <button
       className="button2"
     style={{ color: '#2385E8', borderColor: 'white' }}
-    onClick={() => {
-      firebase.doSignOut();
+      onClick={() => {
+        firebase.doSignOut();
       //this.props.history.push(ROUTES.SIGN_IN)       
       //<Route path={ROUTES.SIGN_IN} component={SignInPage}/>  
       history.push('/signin');
