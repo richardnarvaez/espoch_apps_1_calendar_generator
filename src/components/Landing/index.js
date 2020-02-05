@@ -1,17 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
+import Icon from '../../lib/svg';
 
 import XLSX from 'xlsx';
 import { make_cols } from './../../MakeColumns';
 import { SheetJSFT } from './../../types';
 
 import { compose } from 'recompose';
+import Calendar from 'tui-calendar'; /* ES6 */
+import "tui-calendar/dist/tui-calendar.css";
+import 'tui-date-picker/dist/tui-date-picker.css';
+import 'tui-time-picker/dist/tui-time-picker.css';
 
 import {
   AuthUserContext,
-  withAuthorization,
-  withEmailVerification,
+  // withAuthorization,
+  // withEmailVerification,
 } from '../Session';
 
 class Landing extends React.Component {
@@ -29,7 +34,47 @@ class Landing extends React.Component {
   }
 
   componentDidMount(){
+    
+//     calendar.createSchedules([
+//       {
+//           id: '1',
+//           calendarId: '1',
+//           title: 'my schedule',
+//           category: 'time',
+//           dueDateClass: '',
+//           start: '2020-02-05T08:30:00+05:00',
+//           end: '2020-02-05T09:30:00+05:00'
+//       },
+      
+//   ]);
+//     calendar.on('clickMore', function(event) {
+//       console.log('clickMore', event.date, event.target);
+//   });
+//   calendar.on('beforeUpdateSchedule', function(event) {
+//     var schedule = event.schedule;
+//     var changes = event.changes;
 
+//     calendar.updateSchedule(schedule.id, schedule.calendarId, changes);
+// });
+
+// calendar.on('beforeCreateSchedule', function(event) {
+//   var startTime = event.start;
+//   var endTime = event.end;
+//   var isAllDay = event.isAllDay;
+//   var guide = event.guide;
+//   var triggerEventName = event.triggerEventName;
+//   var schedule;
+
+//   if (triggerEventName === 'click') {
+//       // open writing simple schedule popup
+//       schedule = {...};
+//   } else if (triggerEventName === 'dblclick') {
+//       // open writing detail schedule popup
+//       schedule = {...};
+//   }
+
+//   calendar.createSchedules([schedule]);
+// });
   }
 
   toggleClick = ()=> {
@@ -51,18 +96,25 @@ class Landing extends React.Component {
     console.log("DATA: ", this.state.data)
 
     if(prevState.data.length == 0 && this.state.data.length > 0){
-        console.log("DATA: ", this.state.data.length)
+        // console.log("DATA: ", this.state.data.length)
       let allMaterias = [];
       let allMatRows = [];
+      for(let i=0; i<= 6; i++){
+        allMatRows.push([null, null, null, null, null, null, null, null])
+      }
       for(let i = 7; i<= this.state.data.length - 1; i ++){
-        console.log("I: ", i)
-        console.log("DATOS FIJOS: ", this.state.data[i])
+        
+        // console.log("I: ", i)
+        // console.log("SSSSS: ", this.state.data[i]["__EMPTY_1"].split(":")[0])
+        const vls = this.state.data[i]["__EMPTY_1"].split(":")[0];
+        // console.log("DATOS FIJOS: ", this.state.data[i])
 
         // for(let m = 0 ; m<= Object.keys(this.state.data[i]).length -1; m++){
         //   console.log(`${i}: ${Object.keys(this.state.data[i])[i]}`);
           
         // }
         let rowMats = [null, null, null, null, null, null, null, null]
+        
         Object.keys(this.state.data[i]).forEach(key => {
 
           let value = this.state.data[i][key];
@@ -97,16 +149,60 @@ class Landing extends React.Component {
           
           //console.log(">>>>>>>>>>>", value.split(/\n\n/g) )
           console.log(`${key.replace("__EMPTY_", "")}: ${value.replace(/\n\n/g, " | ")}`);
-          if (allMaterias.indexOf(value) === -1) {
+          if (allMaterias.indexOf(value.split(/\n\n/g)[0]) === -1) {
             if (!value.match(/^\d/)) {
-              allMaterias.push(value);
+              allMaterias.push(value.split(/\n\n/g)[0]);
            }
           }
           // if (allMaterias.includes(value) === false) allMaterias.push(value);
         })
-        allMatRows.push(rowMats);
+
+        switch(vls){
+          case "7":
+            allMatRows[0] = rowMats;
+            break
+          case "9":
+            allMatRows[1] = rowMats;
+            break
+          case "11":
+            allMatRows[2] = rowMats;
+            break
+          case "13":
+            allMatRows[3] = rowMats;
+            break
+          case "15":
+            allMatRows[4] = rowMats;
+            break
+          case "19":
+            allMatRows[5] = rowMats;
+            break
+          case "21":
+            allMatRows[6] = rowMats;
+            break
+        }
+        
+        
       }
+      console.log(">>>>>>>", allMatRows)
       this.setState({allMaterias, allMatRows})
+      let daynames = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
+    // var calendar = new Calendar('#calendar', {
+    //   defaultView: 'week',
+    //   useCreationPopup: true,
+    // useDetailPopup: true,
+    // day:{},
+    //   week: {
+    //     daynames: daynames,
+    //     narrowWeekend: true,
+    //     startDayOfWeek: 1 // monday
+    //   },
+    //   taskView: false,
+    //   template: {
+    //     monthDayname: function(dayname) {
+    //       return '<span class="calendar-week-dayname-name">' + dayname.label + '</span>';
+    //     }
+    //   }
+    // });
     }
     
     if(this.state.file.size != undefined && this.state.data.length == 0){
@@ -142,6 +238,16 @@ class Landing extends React.Component {
     };
   }
 
+  generar=()=>{
+    var tableInfo = Array.prototype.map.call(document.querySelectorAll('#horario tr'), function(tr){
+      if(tr.querySelectorAll('th input').length >0)
+      return Array.prototype.map.call(tr.querySelectorAll('th input'), function(td){
+        return td.value;
+        });
+      });
+      tableInfo.shift();
+    console.log("HORARIO:", tableInfo)
+  }
   render(){
     return(
       <div style={{ 
@@ -150,23 +256,44 @@ class Landing extends React.Component {
         height: '100vh'}}>
 
       <div className="container">
-      <div className="mb-5" style={{textAlign: 'center',}}>
-        <h1>Generador de horarios</h1>
-        <p >Esto es una descripcion</p>
-      </div>
+      
       {
         this.state.generar ? 
         <>
-          <a onClick={this.toggleClick}>X</a>
+
+        <a className="no-print" style={{position: 'absolute',
+          background: "#fff",
+          padding: 8,
+          borderRadius: 10000,
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          cursor: "pointer",
+          justifyContent: "center",
+          height: 42,
+          width: 42,
+          boxShadow: "0 2px 5px #00000045",
+          }} onClick={this.toggleClick}>
+            <Icon name="back"/>
+          </a>
+
+        <div className="mb-5 no-print" style={{textAlign: 'center',}}>
+          <h1>Generador de horarios</h1>
+          <p >Esto es una descripcion</p>
+        </div>
+      
+        <div className="no-print">
+
           <label className="btn btn-primary">
             <i className="fa fa-image"></i> Importar<input type="file" style={{display: 'none'}} accept={SheetJSFT} onChange={this.handleChange}/>
           </label>
           <button>Horarios prestablecidos</button>
           
+        </div>
         <div>
         
         
-          {
+          {/* {
             this.state.allMaterias && this.state.allMaterias.map((item, i)=>{
               return(
                 <div className="form-check">
@@ -175,19 +302,19 @@ class Landing extends React.Component {
                 </div>
               )
             })
-          }
+          } */}
           
         </div>
-        <table class="table">
+        <table id="horario" class="table">
         <thead>
           <tr>
             <th scope="col">Hora</th>
-            <th scope="col">Lune</th>
-            <th scope="col">M</th>
-            <th scope="col">Mi</th>
-            <th scope="col">J</th>
-            <th scope="col">V</th>
-            <th scope="col">S</th>
+            <th scope="col">Lunes</th>
+            <th scope="col">Martes</th>
+            <th scope="col">Miercoles</th>
+            <th scope="col">Jueves</th>
+            <th scope="col">Viernes</th>
+            <th scope="col">Sabado</th>
             <th scope="col">Domingo</th>
           </tr>
         </thead>
@@ -201,13 +328,13 @@ class Landing extends React.Component {
                       if(subItem){
                         let sp = subItem && subItem.split(/\n\n/g);
                         return(<th scope="col">
-                        <p style={{fontWeight: 'lighter'}}>{sp[0]}</p>
-                        <p style={{fontWeight: 'bold'}}>{sp[1]}</p>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value={sp[0]}/>
+                        {/* <p style={{fontWeight: 'lighter',fontSize: 13}}>{sp[0]}</p> */}
+                        <p style={{fontWeight: 'bold', fontSize: 8}}>{sp[1]}</p>
                       </th>)
                       }else{
                         return(<th>
-                        <p>Hora libre</p>
-                        <p>---</p>
+                          <input type="text" class="form-control" placeholder="Libre" aria-label="Username" aria-describedby="addon-wrapping"/>
                       </th>)
                       }
                     })
@@ -220,7 +347,12 @@ class Landing extends React.Component {
           </tbody>
         </table>
 
-          <Link className="bt btn-primary" to={ROUTES.HOME}>Generar</Link>
+        <div id="calendar"></div>
+
+          <div className="no-print">
+            <button className="bt btn-primary" onClick={this.generar}>Generar</button>
+            <button onClick={()=>window.print()}>Imprimir</button>
+          </div>
 
         </>
     : <Start ctx={this}/>
