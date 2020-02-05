@@ -258,10 +258,11 @@ class Landing extends React.Component {
         this.state.generar ? 
         <>
 
-        <div className="container" style={{paddingTop: 150}}>
-        <a className="no-print" style={{position: 'absolute',
+        <a className="no-print" style={{position: 'fixed',
           background: "#fff",
           padding: 8,
+          top:32,
+          left: 32,
           borderRadius: 10000,
           textAlign: "center",
           display: "flex",
@@ -272,20 +273,31 @@ class Landing extends React.Component {
           width: 58,
           boxShadow: "0 2px 5px #00000045",
           }} onClick={this.toggleClick}>
-            <Icon name="back"/>
+            <Icon className="no-print" name="back"/>
           </a>
 
+        <div className="container" style={{paddingTop: 150}}>
+        
+
         <div className="mb-5 no-print" style={{textAlign: 'center',}}>
+          <img style={{width:200}} src="https://i.pinimg.com/originals/77/75/5e/77755e565ef7ddbff2546231cd8732bf.png"></img>
           <h1>Generador de horarios</h1>
           <p >Esto es una descripcion</p>
         </div>
       
         <div className="no-print">
-
+          <div>
+            <p style={{fontWeight: 'bold'}}>IMPORTAR</p>
+            <p className="mb-3">Selecciona el archivo EXCEL de tu horario</p>
+          </div>
           <label className="btn btn-primary">
-            <i className="fa fa-image"></i> Importar<input type="file" style={{display: 'none'}} accept={SheetJSFT} onChange={this.handleChange}/>
+            <i className="fa fa-image"></i> Importar EXCEL<input type="file" style={{display: 'none'}} accept={SheetJSFT} onChange={this.handleChange}/>
           </label>
           
+          <div>
+            <p className="mt-4" style={{fontWeight: 'bold'}}>HORARIO</p>
+            <p className="mb-3">Edita tu horario a tu gusto</p>
+          </div>
         </div>
         <div>
         
@@ -302,8 +314,12 @@ class Landing extends React.Component {
           } */}
           
         </div>
-        <table id="horario" class="table">
-        <thead>
+        <table id="horario" class="table" style={{
+          borderRadius: 16,
+          background: '#fafafa',
+          boxShadow: '0 2px 5px #00000015',
+          overflow: "hidden"}}>
+        <thead className="thead-dark">
           <tr>
             <th scope="col">Hora</th>
             <th scope="col">Lunes</th>
@@ -346,9 +362,23 @@ class Landing extends React.Component {
 
         <div id="calendar"></div>
 
-          <div className="no-print">
-            <button className="bt btn-primary" onClick={this.generar}>Generar</button>
-            <button onClick={()=>window.print()}>Imprimir</button>
+          <div className="no-print" style={{marginBottom: 150, textAlign: "center"}}>
+            <button className="bt btn-primary" style={{
+              borderRadius: 1000,
+              marginRight:8,
+              padding: "8px 38px",
+              boxShadow: "0 2px 5px #00000030",
+              fontWeight: "bold"
+              }} onClick={this.generar}>Generar</button>
+            <button style={{
+              borderRadius: 1000,
+              marginLeft: 8,
+              background: "#000",
+              color: "#fafafa",
+              padding: "8px 38px",
+              boxShadow: "0 2px 5px #00000030",
+              fontWeight: "bold"
+              }} onClick={()=>window.print()}>Imprimir</button>
           </div>
 </div>
         </>
@@ -366,7 +396,12 @@ const Start = ({ctx}) => {
     <AuthUserContext.Consumer>
       {authUser => (
         <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center'}}>
+        
         <div className="row" style={{textAlign: 'center'}}> 
+        <div className="col-12 mb-4 no-print" style={{textAlign: 'center',}}>
+          <h1>ZETPLAIN</h1>
+          <p >Esto es una descripcion</p>
+        </div>
           <div className="col-6">
             <a onClick={ ctx.toggleClick }  className="card" style={{width: '18rem', marginLeft: 'auto', cursor: 'pointer'}}>
               <img style={{height: 200, objectFit: 'cover'}} className="card-img-top" src="https://www.milenio.com/uploads/media/2019/04/02/el-domingo-de-abril-sera.jpg" alt="Card image cap"/>
@@ -380,9 +415,9 @@ const Start = ({ctx}) => {
           <div className="col-6" style={{display: "flex",
             alignItems: "center"}}>
             {
-              authUser != null ? <Link to={ROUTES.HOME}>
-              <div className="card" style={{width: '18rem'}} >
-              <Link to={ROUTES.SIGN_OUT} className="no-print" data-toggle="tooltip" data-placement="top" title="Tooltip on top" style={{position: 'absolute',
+              authUser != null ? <Link to={ROUTES.HOME} style={{ height: '100%'}}>
+              <div className="card" style={{width: '18rem', height: '100%'}} >
+              <Link to={ROUTES.SIGN_OUT} className="no-print" data-toggle="tooltip" data-placement="top" title="Cerrar sesión" style={{position: 'absolute',
           background: "#fff",
           padding: 8,
           top: 8,
@@ -399,15 +434,20 @@ const Start = ({ctx}) => {
           }} >
             <Icon name="close"/>
           </Link>
+          
               <img style={{
                 height: 100,
                 margin: "auto",
                 width: 100,
-                marginTop: "1.25rem",
+                marginTop: "3.25rem",
                 borderRadius: 16,
                 objectFit: "cover"
-              }}  src="https://guiauniversitaria.mx/wp-content/uploads/2019/05/dia-del-estudiante-1068x623.jpg" alt="Card image cap"/>
-              <div className="card-body">
+              }}  src="https://www.searchpng.com/wp-content/uploads/2019/02/Men-Profile-Image-715x657.png" alt="Card image cap"/>
+              <div className="card-body" style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center"}}>
                 <h5 className="card-title">Bienvenido: {authUser.username} </h5>
                 <span>Entrar a mi cuenta</span>
                 </div>
@@ -424,7 +464,7 @@ const Start = ({ctx}) => {
             }
             
           </div>
-          <p className="col-12" style={{fontSize: 12, marginTop: 64}}>2020 | Nombre App</p>
+          <p className="col-12" style={{fontSize: 12, marginTop: 64}}>2020 | Zetplain</p>
         </div></div>
       )}
     </AuthUserContext.Consumer>

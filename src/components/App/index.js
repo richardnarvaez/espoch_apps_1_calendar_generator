@@ -9,6 +9,7 @@ import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
+import InfoPage from '../Info';
 
 import StadisticsPage from '../Stadistics'
 import FlotaPage from '../Flota'
@@ -34,7 +35,7 @@ const App = () => (
             <Route exact path={ROUTES.NOTIFY} component={NotifyPage} />
             <Route exact path={ROUTES.WORKERS} component={WorkersPage} />
             <Route exact path={ROUTES.CAJA} component={CajaPage} /> */}
-
+            <Route path={ROUTES.INFO} component={InfoPage} />
             <Route exact path={ROUTES.LANDING} component={LandingPage} />
             <Route path={ROUTES.SIGN_OUT} component={SignOutPage} />
             {/* <Route path={ROUTES.SIGN_UP} component={SignUpPage} /> */}

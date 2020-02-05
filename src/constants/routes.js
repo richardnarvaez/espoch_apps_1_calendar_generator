@@ -7,6 +7,7 @@ export const PASSWORD_FORGET = '/pw-forget';
 export const ADMIN = '/admin';
 export const ADMIN_DETAILS = '/admin/:id';
 export const SIGN_OUT = "/signout"
+export const INFO = "/info"
 
 export const CAJA = '/caja';
 export const STADISTIC = '/stadistics'
