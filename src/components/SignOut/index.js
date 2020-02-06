@@ -9,21 +9,31 @@ import { withRouter } from 'react-router-dom';
 
 const SignOutButton = ({ firebase, history }) => (
   <>
-  <h1>Estas seguro de que deseas salir?</h1>
-  <Link to={ROUTES.LANDING}>VOLVER</Link>
-  <button
-      className="button2"
-    style={{ color: '#2385E8', borderColor: 'white' }}
-      onClick={() => {
-        firebase.doSignOut();
-      //this.props.history.push(ROUTES.SIGN_IN)       
-      //<Route path={ROUTES.SIGN_IN} component={SignInPage}/>  
-      history.push('/signin');
-    }
-    }>      
-       Salir        
-  </button>
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "100vh",
+    }}>
+
+      <div className="card" style={{padding: 32}}>
+        <h1>Estas seguro de que deseas salir?</h1>
+        <div style={{display: "flex"}}>
+        <Link to={ROUTES.LANDING}>Cancelar</Link>
+        <a
+          className="button2"
+          style={{ marginLeft: 16, cursor: 'pointer', color: '#2385E8', borderColor: 'white' }}
+          onClick={() => {
+            firebase.doSignOut();
+            history.push('/signin');
+          }
+          }>
+          Cerrar Sesión
+    </a></div>
+      </div>
+    </div>
+
   </>
 );
 
-export default  withRouter(withFirebase(SignOutButton));
+export default withRouter(withFirebase(SignOutButton));

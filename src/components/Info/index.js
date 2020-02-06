@@ -29,13 +29,14 @@ export default class Info extends Component {
                             }} to={ROUTES.HOME}>
                                 <Icon className="no-print" name="back" />
                             </Link>
-                            <h3 style={{marginLeft: 16, marginBottom: 0}}>Info</h3>
+                            <h3 style={{ marginLeft: 16, marginBottom: 0 }}>Info</h3>
                         </div>
                         <div id="list-example" class="list-group mt-4">
-                            <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
-                            <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
-                            <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
-                            <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
+                            <a class="list-group-item list-group-item-action" href="#list-item-1">1.Introducción</a>
+                            <a class="list-group-item list-group-item-action" href="#list-item-2">2.Primeros Pasos</a>
+                            <a class="list-group-item list-group-item-action" href="#list-item-3">3.Crear Horario</a>
+                            <a class="list-group-item list-group-item-action" href="#list-item-4">4.Asignar Actividades</a>
+                            <a class="list-group-item list-group-item-action" href="#list-item-5">5.Guardar Horario</a>
                         </div>
                     </div>
 
@@ -43,125 +44,35 @@ export default class Info extends Component {
                         <div>
                             <h1>Zetplain</h1>
                             <p className="mb-4">Manual de usuario e informacion</p>
-                            <h4 id="list-item-1">Item 1</h4>
+                            <h4 id="list-item-1">1.Introducción</h4>
                             <p>
-                                .sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
+                                Zetplain es un programa que te permite crear tu propio horario academico
+                                además de darte la capacidad de asignar otras actividades que puedes incluir
+                                dentro de tu horario.
                             </p>
-                            <h4 id="list-item-1">Item 1</h4>
+                            <h4 id="list-item-1">2.Primeros Pasos</h4>
                             <p>
-                                .sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
+                                Para comenzar a usar ZETPLAIN primero debes registrarte y logearte en la primera
+                                pantalla, luego de eso pasaras a la panatlla prinicpal que te mostrará todas las
+                                herramientas para elaborar tu horario
                             </p>
-                            <h4 id="list-item-1">Item 1</h4>
+                            <h4 id="list-item-1">3.Crear Horario</h4>
                             <p>
-                                .sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
+                                Al pulsar el boton (no se como se llama) te llevara a una nueva ventana en la cual
+                                deberás escoger las materias a cursar ese semestre y automaticamente se genera un
+                                horario con tiempos de almuerzo y descanso.
                             </p>
-                            <h4 id="list-item-1">Item 1</h4>
+                            <h4 id="list-item-1">4.Asignar Actividades</h4>
                             <p>
-                                .sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
+                                Para asginar una actividad primero debes hacer clic en cualquier recuadro vacio del
+                                horario, al pularlo podras ingresar la actvidad que vas a realizar en esa hora específica.
                             </p>
-                            <h4 id="list-item-1">Item 1</h4>
+                            <h4 id="list-item-1">5.Guardar Horario</h4>
                             <p>
-                                .sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
+                                Para guardar el horario simplemente tienes que hacer clic en el boton GUARDAR y escoger
+                                la ruta de ubicacion de tu preferencia. 
                             </p>
-                            <h4 id="list-item-1">Item 1</h4>
-                            <p>
-                                .sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                            </p>
-                            <h4 id="list-item-1">Item 1</h4>
-                            <p>
-                                .sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                            </p>
-                            <h4 id="list-item-2">Item 2</h4>
-                            <p>
-                                .sdasdasdasdasd
-                                    sdasdasdasdl;jasdlkfa;sdf
-                                    dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                    sdasdasdasdasd
-                                    sdasdasdasdl;jasdlkfa;sdf
-                                    dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                    sdasdasdasdasd
-                                    sdasdasdasdl;jasdlkfa;sdf
-                                    dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                            </p>
-                            <h4 id="list-item-3">Item 3</h4>
-                            <p>
-                                .sdasdasdasdasd
-                                    sdasdasdasdl;jasdlkfa;sdf
-                                    dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                    sdasdasdasdasd
-                                    sdasdasdasdl;jasdlkfa;sdf
-                                    dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                    sdasdasdasdasd
-                                    sdasdasdasdl;jasdlkfa;sdf
-                                    dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                            </p>
-                            <h4 id="list-item-4">Item 4</h4>
-                            <p>.sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae
-                                sdasdasdasdasd
-                                sdasdasdasdl;jasdlkfa;sdf
-                                dsdlfksd;fsjd;sdfdfhola como ehola como estas como estasd comhola comoae</p>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
