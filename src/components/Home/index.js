@@ -151,10 +151,10 @@ class HomePage extends React.Component {
           <div class="col-6">
             {/* <h1>Home</h1> */}
           </div>
-          <div class="col-2" style={{
+          <div class="col-6" style={{
             alignItems: "center",
             display: "flex",
-            justifyContent: "center"
+            justifyContent: "flex-end"
           }}>
             <div class="dropdown">
               <a style={{
