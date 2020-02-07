@@ -1,11 +1,12 @@
 {
-  "name": "auth1",
-  "version": "0.2.0",
+  "name": "zetplain",
+  "version": "0.2.55",
   "private": false,
   "homepage": "./",
   "main": "src/electron-starter.js",
   "dependencies": {
     "core-js": "^3.4.0",
+    "electron-splashscreen": "^1.0.0",
     "firebase": "^5.11.1",
     "react": "^16.11.0",
     "react-color": "^2.17.3",
@@ -21,6 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "electron": "electron .",
+    "pack-win" : "electron-packager ~/Documents/calendario_universidad/app  Zetplain --platform=win32 --arch=x64",
+    "pack-mac" : "electron-packager .",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --passWithNoTests",
     "eject": "react-scripts eject"
@@ -34,6 +37,7 @@
   "devDependencies": {
     "electron": "^7.1.11",
     "electron-builder": "^22.3.2",
+    "electron-packager": "^14.2.0",
     "electron-reload": "^1.5.0",
     "webpack": "^4.41.0"
   }
