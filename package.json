@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "electron": "electron .",
+    "electron": "electron . ",
     "pack-win" : "electron-packager ~/Documents/calendario_universidad/app  Zetplain --platform=win32 --arch=x64",
     "pack-mac" : "electron-packager .",
     "build": "react-scripts build",
