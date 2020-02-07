@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-
+/zetplain-darwin-x64
 # testing
 /coverage
 
